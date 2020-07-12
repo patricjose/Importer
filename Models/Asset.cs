@@ -1,6 +1,6 @@
 using System;
 
-namespace Importer.Models
+namespace SmartStocksImporter.Models
 {
     public class Asset 
     {

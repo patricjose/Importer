@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Importer.Models
+namespace SmartStocksImporter.Models
 {
     public class Wallet
     {

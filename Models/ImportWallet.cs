@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Importer.Models
+namespace SmartStocksImporter.Models
 {
     public class ImportWallet
     {

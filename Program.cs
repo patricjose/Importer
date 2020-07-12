@@ -5,9 +5,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Importer.Models;
+using SmartStocksImporter.Models;
 
-namespace Importer
+namespace SmartStocksImporter
 {
     class Program
     {
