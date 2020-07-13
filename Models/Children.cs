@@ -7,18 +7,18 @@ namespace SmartStocksImporter.Models
     public class Children
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string name { get; set; }
 
         [JsonPropertyName("children")]
         public List<Children> children { get; set; }
 
         [JsonPropertyName("size")]
-        public decimal Size { get; set; }
+        public decimal size { get; set; }
 
         [JsonPropertyName("slug")]
-        public string Slug { get; set; }
+        public string slug { get; set; }
 
         [JsonPropertyName("sum")]
-        public decimal Sum { get; set; }
+        public decimal sum { get; set; }
     }
 }

@@ -6,9 +6,9 @@ namespace SmartStocksImporter.Models
     public class WalletDetails
     {
         [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
 
         [JsonPropertyName("wallet")]
-        public Wallet Wallet { get; set; }
+        public Wallet wallet { get; set; }
     }
 }
