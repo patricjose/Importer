@@ -12,7 +12,7 @@ namespace SmartStocksImporter.Business
 {
     class FundsImporterBusiness : IFundsImporterBusiness
     {
-        public async Task GetFundDetails(string fund)
+        public async Task<ImportWallet> GetFundWallet(string fund)
         {
             try {
                 var httpClientUtil = new HttpClientUtil();
@@ -35,7 +35,7 @@ namespace SmartStocksImporter.Business
                 
                 foreach (Children c in walletDetails.wallet.children)
                 {
-                    if (c.name == "Ações")
+                    if (c.name.ToUpper().Equals("AÇÕES") || c.name.ToUpper().Equals("INVESTIMENTO NO EXTERIOR"))
                     {
                         importWallet.Total = c.sum;
                         foreach (Children a in c.children)
@@ -51,7 +51,9 @@ namespace SmartStocksImporter.Business
                     }
                 }
 
-                Console.WriteLine(await ImportWallet(importWallet));
+                Console.WriteLine(importWallet);
+
+                return importWallet;
             }
             catch (Exception ex)
             {
@@ -60,7 +62,7 @@ namespace SmartStocksImporter.Business
             }
         }
 
-        public async Task GetFundsRanking()
+        public async Task<List<Fund>> GetFundsRanking()
         {
             try
             {
@@ -84,6 +86,8 @@ namespace SmartStocksImporter.Business
                     if (f.cvm_class != null && f.cvm_class.ToUpper().Equals("AÇÕES"))
                         stocksFundList.Add(f);
                 }
+
+                return stocksFundList;
             }
             catch (Exception ex)
             {
