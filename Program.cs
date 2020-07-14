@@ -13,15 +13,19 @@ namespace SmartStocksImporter
 
             var FundList = await _fundsImporterBusiness.GetFundsRanking();
 
-            Console.WriteLine("Sending data to Smart Stocks API...");
-
             foreach (ImportFund f in FundList)
             {
+                Console.WriteLine("Sending fund data to Smart Stocks API...");
+
                 await _fundsImporterBusiness.Import(f, "fund");
+
+                Console.WriteLine("Done!");
+                Console.WriteLine("Sending wallet data to Smart Stocks API...");
+
                 await _fundsImporterBusiness.Import(await _fundsImporterBusiness.GetFundWallet(f.FundName), "wallet");
+
+                Console.WriteLine("Done!");
             }
-            
-            Console.WriteLine("Done!");
         }
     }
 }
