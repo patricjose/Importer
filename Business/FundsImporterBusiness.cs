@@ -62,7 +62,7 @@ namespace SmartStocksImporter.Business
             }
         }
 
-        public async Task<List<Fund>> GetFundsRanking()
+        public async Task<List<ImportFund>> GetFundsRanking()
         {
             try
             {
@@ -79,12 +79,20 @@ namespace SmartStocksImporter.Business
                 Console.WriteLine("Ranking details found!");
                 Console.WriteLine("Building fund object list...");
 
-                var stocksFundList = new List<Fund>();
+                var stocksFundList = new List<ImportFund>();
 
                 foreach (Fund f in fundList)
                 {
                     if (f.cvm_class != null && f.cvm_class.ToUpper().Equals("AÇÕES"))
-                        stocksFundList.Add(f);
+                    {
+                        var fund = new ImportFund();
+                        fund.Class = f.cvm_class;
+                        fund.FundName = f.s;
+                        fund.Type = f.tipo;
+                        fund.Variation6Months = f.variacao_6_meses;
+
+                        stocksFundList.Add(fund);
+                    }
                 }
 
                 return stocksFundList;
@@ -96,7 +104,7 @@ namespace SmartStocksImporter.Business
             }
         }
 
-        public async Task<HttpResponseMessage> ImportWallet (object data)
+        public async Task<HttpResponseMessage> Import (object data, string route)
         {
             var httpClientUtil = new HttpClientUtil();
             var client = httpClientUtil.InitializeClient();
@@ -107,7 +115,7 @@ namespace SmartStocksImporter.Business
 
             Console.WriteLine(JsonSerializer.Serialize(data));
 
-            using (var postTask = await client.PostAsync("https://localhost:5001/api/Wallet", Json))
+            using (var postTask = await client.PostAsync("https://localhost:5001/api/" + route, Json))
             {
                 return postTask.EnsureSuccessStatusCode();
             }

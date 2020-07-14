@@ -8,15 +8,15 @@ namespace SmartStocksImporter
     {
         public static async Task Main(string[] args)
         {
-            string fund = "forpus-acoes-master-fia";
-
             FundsImporterBusiness _fundsImporterBusiness = new FundsImporterBusiness();
 
-            //await _fundsImporterBusiness.GetFundWallet(fund);
             var FundList = await _fundsImporterBusiness.GetFundsRanking();
 
-            foreach (Fund f in FundList)
-                await _fundsImporterBusiness.ImportWallet(await _fundsImporterBusiness.GetFundWallet(f.s));
+            foreach (ImportFund f in FundList)
+            {
+                await _fundsImporterBusiness.Import(f, "fund");
+                await _fundsImporterBusiness.Import(await _fundsImporterBusiness.GetFundWallet(f.FundName), "wallet");
+            }
         }
     }
 }

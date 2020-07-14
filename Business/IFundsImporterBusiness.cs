@@ -8,7 +8,7 @@ namespace SmartStocksImporter.Business
     public interface IFundsImporterBusiness
     {
         Task<ImportWallet> GetFundWallet(string fund);
-        Task<List<Fund>> GetFundsRanking();
-        Task<HttpResponseMessage> ImportWallet(object data);
+        Task<List<ImportFund>> GetFundsRanking();
+        Task<HttpResponseMessage> Import(object data, string route);
     }
 }
