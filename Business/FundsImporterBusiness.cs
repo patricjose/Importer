@@ -30,8 +30,8 @@ namespace SmartStocksImporter.Business
 
                 var importWallet = new ImportWallet();
                 importWallet.Id = Guid.NewGuid();
-                importWallet.Fund = fund; 
-                importWallet.Assets = new List<Asset>();
+                importWallet.FundName = fund; 
+                importWallet.Assets = new List<ImportAsset>();
                 
                 foreach (Children c in walletDetails.wallet.children)
                 {
@@ -40,7 +40,7 @@ namespace SmartStocksImporter.Business
                         importWallet.Total = c.sum;
                         foreach (Children a in c.children)
                         {
-                            var asset = new Asset();
+                            var asset = new ImportAsset();
                             asset.Id = Guid.NewGuid();
                             asset.Name = a.name;
                             asset.Size = a.size;
