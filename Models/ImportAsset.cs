@@ -8,6 +8,7 @@ namespace SmartStocksImporter.Models
         public string Name { get; set; }
         public decimal Size { get; set; }
         public string FundName { get; set; }
+        public decimal Percentage { get; set; }
         public Guid WalletId { get; set; }
     }
 }

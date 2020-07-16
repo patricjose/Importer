@@ -45,6 +45,7 @@ namespace SmartStocksImporter.Business
                             asset.Name = a.name;
                             asset.Size = a.size;
                             asset.WalletId = importWallet.Id;
+                            asset.Percentage = Percentage.GetPercentage(a.size, importWallet.Total);
 
                             importWallet.Assets.Add(asset);
                         }
